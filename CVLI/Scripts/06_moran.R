@@ -162,3 +162,28 @@ saveRDS(
   vizinhos_queen,
   "CVLI/Dados/vizinhos_queen.rds"
 )
+
+# ------------------------------------------------------------
+# 9. EXPORTAR DIAGRAMA DE MORAN EM PNG
+# ------------------------------------------------------------
+
+# Abrir dispositivo gráfico PNG
+png(
+  filename = "CVLI/Resultados/diagrama_moran_2015_2025.png",
+  width = 2400,
+  height = 1800,
+  res = 300
+)
+
+# Construir o diagrama de Moran
+moran.plot(
+  mapa_taxa_al$taxa_feminicidio,
+  listw = pesos_queen,
+  zero.policy = TRUE,
+  xlab = "Taxa média anual por 100 mil mulheres",
+  ylab = "Defasagem espacial da taxa",
+  main = "Diagrama de Moran - Alagoas (2015 a 2025)"
+)
+
+# Fechar o dispositivo e salvar a imagem
+dev.off()

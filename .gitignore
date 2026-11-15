@@ -1,7 +1,15 @@
-.Rproj.user/ 
-.Rhistory 
-.RData 
+.Rproj.user/
+.Rhistory
+.RData
 .Ruserdata
-.DS_Store  
-SINESP/Dados/  
-CVLI/Dados/
+.DS_Store
+
+# Pastas fora do repositorio
+/SINESP/
+
+# Bases de dados
+/CVLI/Dados/
+*.rds
+
+# Arquivos temporarios do Windows
+Thumbs.db

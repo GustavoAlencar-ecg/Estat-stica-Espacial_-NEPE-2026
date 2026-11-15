@@ -94,7 +94,8 @@ feminicidio_ano <- base_feminicidio %>%
     )
   )
 
-print(feminicidio_ano, n = Inf)
+# Visualizar distribuição anual
+print(feminicidio_ano)
 
 # Gráfico da evolução anual
 
@@ -120,7 +121,14 @@ grafico_anual <- ggplot(
     y = "Número de feminicídios",
     caption = "Fonte: CVLI, Governo de Alagoas."
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(size = 19, face = "bold"),
+    plot.subtitle = element_text(size = 15),
+    plot.caption = element_text(size = 11),
+    axis.title = element_text(size = 15),
+    axis.text = element_text(size = 13)
+  )
 
 print(grafico_anual)
 
@@ -141,6 +149,7 @@ ggsave(
 
 summary(base_feminicidio$idade)
 
+# Desvio-padrão
 sd(
   base_feminicidio$idade,
   na.rm = TRUE
@@ -148,6 +157,17 @@ sd(
 
 # Quantidade de idades ausentes
 sum(is.na(base_feminicidio$idade))
+
+# Conferir registros com idade zero
+base_feminicidio %>%
+  filter(idade == 0) %>%
+  select(
+    ano,
+    data_fato,
+    `CIDADE DO FATO`,
+    idade
+  ) %>%
+  print()
 
 # Criar faixas etárias
 
@@ -173,12 +193,13 @@ base_feminicidio <- base_feminicidio %>%
   )
 
 # Distribuição por faixa etária
+
 tabela_idade <- tabela_frequencia(
   base_feminicidio,
   faixa_etaria
 )
 
-print(tabela_idade, n = Inf)
+print(tabela_idade)
 
 # Gráfico de faixas etárias
 
@@ -194,7 +215,14 @@ grafico_idade <- ggplot(
     x = "Faixa etária",
     y = "Número de vítimas"
   ) +
-  theme_minimal() +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(size = 19, face = "bold"),
+    plot.subtitle = element_text(size = 15),
+    plot.caption = element_text(size = 11),
+    axis.title = element_text(size = 15),
+    axis.text = element_text(size = 13)
+  ) +
   theme(
     axis.text.x = element_text(
       angle = 45,
@@ -222,7 +250,7 @@ tabela_cor_raca <- tabela_frequencia(
   `COR/RACA DA VITIMA`
 )
 
-print(tabela_cor_raca, n = Inf)
+print(tabela_cor_raca)
 
 grafico_cor_raca <- ggplot(
   tabela_cor_raca,
@@ -231,14 +259,23 @@ grafico_cor_raca <- ggplot(
     y = frequencia
   )
 ) +
-  geom_col(fill = "#367FA8") +
+  geom_col(
+    fill = "#367FA8"
+  ) +
   coord_flip() +
   labs(
     title = "Feminicídios segundo cor/raça da vítima",
     x = "Cor/raça",
     y = "Número de vítimas"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(size = 19, face = "bold"),
+    plot.subtitle = element_text(size = 15),
+    plot.caption = element_text(size = 11),
+    axis.title = element_text(size = 15),
+    axis.text = element_text(size = 13)
+  )
 
 print(grafico_cor_raca)
 
@@ -260,7 +297,7 @@ tabela_escolaridade <- tabela_frequencia(
   `ESCOLARIDADE VITIMA`
 )
 
-print(tabela_escolaridade, n = Inf)
+print(tabela_escolaridade)
 
 grafico_escolaridade <- ggplot(
   tabela_escolaridade,
@@ -269,14 +306,23 @@ grafico_escolaridade <- ggplot(
     y = frequencia
   )
 ) +
-  geom_col(fill = "#367FA8") +
+  geom_col(
+    fill = "#367FA8"
+  ) +
   coord_flip() +
   labs(
     title = "Escolaridade das vítimas de feminicídio",
     x = "Escolaridade",
     y = "Número de vítimas"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(size = 19, face = "bold"),
+    plot.subtitle = element_text(size = 15),
+    plot.caption = element_text(size = 11),
+    axis.title = element_text(size = 15),
+    axis.text = element_text(size = 13)
+  )
 
 print(grafico_escolaridade)
 
@@ -298,7 +344,7 @@ tabela_ocupacao <- tabela_frequencia(
   `OCUPACAO VITIMA`
 )
 
-print(tabela_ocupacao, n = Inf)
+print(tabela_ocupacao)
 
 # Mostrar as 15 categorias mais frequentes
 
@@ -314,14 +360,23 @@ grafico_ocupacao <- tabela_ocupacao %>%
       y = frequencia
     )
   ) +
-  geom_col(fill = "#367FA8") +
+  geom_col(
+    fill = "#367FA8"
+  ) +
   coord_flip() +
   labs(
     title = "Ocupações mais frequentes entre as vítimas",
     x = "Ocupação",
     y = "Número de vítimas"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(size = 19, face = "bold"),
+    plot.subtitle = element_text(size = 15),
+    plot.caption = element_text(size = 11),
+    axis.title = element_text(size = 15),
+    axis.text = element_text(size = 13)
+  )
 
 print(grafico_ocupacao)
 
@@ -376,7 +431,7 @@ tabela_horario <- tabela_frequencia(
   periodo_dia
 )
 
-print(tabela_horario, n = Inf)
+print(tabela_horario)
 
 grafico_horario <- ggplot(
   tabela_horario,
@@ -385,14 +440,23 @@ grafico_horario <- ggplot(
     y = frequencia
   )
 ) +
-  geom_col(fill = "#367FA8") +
+  geom_col(
+    fill = "#367FA8"
+  ) +
   coord_flip() +
   labs(
     title = "Feminicídios por período do dia",
     x = "Período",
     y = "Número de ocorrências"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(size = 19, face = "bold"),
+    plot.subtitle = element_text(size = 15),
+    plot.caption = element_text(size = 11),
+    axis.title = element_text(size = 15),
+    axis.text = element_text(size = 13)
+  )
 
 print(grafico_horario)
 
@@ -414,7 +478,7 @@ tabela_local <- tabela_frequencia(
   `LOCAL DO FATO`
 )
 
-print(tabela_local, n = Inf)
+print(tabela_local)
 
 grafico_local <- ggplot(
   tabela_local,
@@ -423,14 +487,23 @@ grafico_local <- ggplot(
     y = frequencia
   )
 ) +
-  geom_col(fill = "#367FA8") +
+  geom_col(
+    fill = "#367FA8"
+  ) +
   coord_flip() +
   labs(
     title = "Locais das ocorrências de feminicídio",
     x = "Local do fato",
     y = "Número de ocorrências"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(size = 19, face = "bold"),
+    plot.subtitle = element_text(size = 15),
+    plot.caption = element_text(size = 11),
+    axis.title = element_text(size = 15),
+    axis.text = element_text(size = 13)
+  )
 
 print(grafico_local)
 
@@ -452,7 +525,7 @@ tabela_instrumento <- tabela_frequencia(
   `INSTRUMENTO UTILIZADO`
 )
 
-print(tabela_instrumento, n = Inf)
+print(tabela_instrumento)
 
 grafico_instrumento <- ggplot(
   tabela_instrumento,
@@ -461,14 +534,23 @@ grafico_instrumento <- ggplot(
     y = frequencia
   )
 ) +
-  geom_col(fill = "#367FA8") +
+  geom_col(
+    fill = "#367FA8"
+  ) +
   coord_flip() +
   labs(
     title = "Instrumentos utilizados nos feminicídios",
     x = "Instrumento utilizado",
     y = "Número de ocorrências"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(size = 19, face = "bold"),
+    plot.subtitle = element_text(size = 15),
+    plot.caption = element_text(size = 11),
+    axis.title = element_text(size = 15),
+    axis.text = element_text(size = 13)
+  )
 
 print(grafico_instrumento)
 
@@ -498,7 +580,7 @@ top_municipios <- feminicidio_municipio %>%
     with_ties = FALSE
   )
 
-print(top_municipios, n = Inf)
+print(top_municipios)
 
 grafico_municipios <- ggplot(
   top_municipios,
@@ -507,7 +589,9 @@ grafico_municipios <- ggplot(
     y = casos
   )
 ) +
-  geom_col(fill = "#164B70") +
+  geom_col(
+    fill = "#164B70"
+  ) +
   coord_flip() +
   labs(
     title = "Municípios com mais feminicídios em Alagoas",
@@ -515,7 +599,14 @@ grafico_municipios <- ggplot(
     x = "Município",
     y = "Número de feminicídios"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(size = 19, face = "bold"),
+    plot.subtitle = element_text(size = 15),
+    plot.caption = element_text(size = 11),
+    axis.title = element_text(size = 15),
+    axis.text = element_text(size = 13)
+  )
 
 print(grafico_municipios)
 
